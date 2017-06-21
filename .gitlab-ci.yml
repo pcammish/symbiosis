@@ -89,7 +89,8 @@ test:xmpp:
 
 .package: &package
   stage: package
-  tags: shell
+  tags: 
+   - shell
   script:
     - export PACKAGE=${CI_BUILD_NAME##package:}
     - echo "$CI_BUILD_NAME" -  "$PACKAGE" - "${CI_BUILD_NAME##package:}"
