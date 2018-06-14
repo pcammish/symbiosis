@@ -135,6 +135,13 @@ if [ ! -e "/etc/ssl/ssl.key" ] &&
 
 fi
 
+# 
+# Remove warning about redefined method
+#
+if [ -e /usr/lib/ruby/vendor_ruby/diffy/diff.rb ] ; then
+    sed -i 's|attr_reader :string1, :string2, :options, :diff|attr_reader :string1, :string2, :options|' /usr/lib/ruby/vendor_ruby/diffy/diff.rb
+fi
+
 #DEBHELPER#
 
 exit 0
