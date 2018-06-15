@@ -67,21 +67,24 @@ if [ -e /usr/share/apache2/apache2-maintscript-helper ] ; then
   done
 fi
 
-# change "no-stats" file to "stats" file
-for domain in /srv/*; do
-  [ -h "$domain" ] && continue;
-  [ -d "$domain" ] && continue;
-
-  no_stats="$domain/config/no-stats"
+# stats are disabled by default and changing enabled/disabled status
+# is now done with config/stats instead of config/no-stats. Preserve
+# the setting here:
+for d in /srv/*/; do
+  # Strip trailing which confuses `[` symlink test.
+  domain="${d%/}"
+  [ -h "$domain" ] && continue
+  [ ! -d "$domain/config" ] && continue
   stats="$domain/config/stats"
-  if [ -e "$no_stats" ] && ( grep -q false "$no_stats" ) ; then
-    # Use cp to maintain permissions, and follow symlinks, removing any destination file first.
-    cp -aL --remove-destination $no_stats $stats
-    truncate -s 0 $stats
+  nostats="$domain/config/no-stats"
+  if [ -e "$nostats" ]; then
+    rm -f "$nostats"
+  else
+    if [ ! -e "$stats" ]; then
+      touch "$stats"
+      chown admin:admin "$stats"
+    fi
   fi
-
-  # remove the old no-stats file
-  [ -f "$no_stats" ] && rm "$no_stats"
 done
 
 #
