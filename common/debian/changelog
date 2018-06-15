@@ -1,3 +1,11 @@
+symbiosis-common (2018:0615) stable; urgency=medium
+
+  * Install extra packages by default: curl, iotop, less, lsof, psmisc, rsync,
+    screen, smartmontools, telnet, vim, wget, htop, mtr-tiny, xfsprogs, and
+    tree. 
+
+ -- Andrew Ladlow <andrew.ladlow@bytemark.co.uk>  Fri, 15 Jun 2018 15:39:57 +0100
+
 symbiosis-common (2017:0901) stable; urgency=medium
 
   * Update postinstall hostname check to ensure HOSTNAME is qualfied.
