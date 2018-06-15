@@ -254,6 +254,11 @@ if domains_to_configure.length > 0
 end
 
 #
+# Create any missing log directories, owned by admin:admin, as they may not exist yet and are needed by the updated Apache templates.
+#
+`find /srv/*/public -maxdepth 0 | while read DIR; do if [ ! -d "$DIR/logs" ]; then mkdir "$DIR/logs"; chown admin:admin "$DIR/logs"; fi; done > /dev/null`
+
+#
 #  For each domain.
 #
 domains.each do |domain|
