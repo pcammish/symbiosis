@@ -26,6 +26,13 @@ module Symbiosis
       get_param("ssl-only", self.config_dir)
     end
 
+    #
+    # Do we redirect to the SSL only version if this site, with HSTS?
+    #
+    def ssl_mandatory_hsts?
+      get_param("ssl-only-hsts", self.config_dir)
+    end
+
     def ssl_x509_certificate_file
       return nil unless self.ssl_current_set.is_a?(Symbiosis::SSL::CertificateSet)
       self.ssl_current_set.certificate_file

@@ -1,3 +1,9 @@
+symbiosis-httpd (2018:0617) stable; urgency=medium
+
+  * Add 'ssl-only-hsts' config requirement for HSTS support. 
+
+ -- Andrew Ladlow <andrew.ladlow@bytemark.co.uk>  Sun, 17 Jun 2018 13:00:00 +0100
+
 symbiosis-httpd (2017:0904) stable; urgency=medium
 
   * Use ssl-hooks to reload apache when SSL certificates are

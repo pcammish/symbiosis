@@ -263,13 +263,24 @@ module Symbiosis
       end
 
       #
-      # Checks to see if a domain has mandatory ssl.
+      # Checks to see if a domain has mandatory ssl without hsts.
       #
       # If no domain is set, then this returns false.
       #
       def mandatory_ssl?
         if defined?(@domain) and @domain.is_a?(Symbiosis::Domain)
           @domain.ssl_mandatory?
+        else
+          false
+        end
+      end
+
+      #
+      # Checks to see if a domain has mandatory ssl with hsts.
+      #
+      def mandatory_ssl_hsts?
+        if defined?(@domain) and @domain.is_a?(Symbiosis::Domain)
+          @domain.ssl_mandatory_hsts?
         else
           false
         end

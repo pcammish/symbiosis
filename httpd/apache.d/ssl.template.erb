@@ -76,7 +76,7 @@
                 SSLStaplingResponderTimeout 5
                 SSLStaplingReturnResponderErrors off
 
-% if mandatory_ssl?
+% if mandatory_ssl_hsts?
                 <IfModule headers_module>
                         # HSTS (mod_headers is required) (15768000 seconds = 6 months)
                         Header always set Strict-Transport-Security "max-age=15768000"
@@ -160,7 +160,7 @@
                 ErrorDocument 403 /bytemark/
         </LocationMatch>
 
-% if mandatory_ssl?
+% if mandatory_ssl or mandatory_ssl_hsts?
         <IfModule rewrite_module>
                 #
                 # This redirects all accesses to the HTTPS version of the site.
