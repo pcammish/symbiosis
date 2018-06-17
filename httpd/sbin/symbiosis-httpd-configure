@@ -310,9 +310,13 @@ end
   # Check if mass hosting is supposed to be enabled.
   #
   if apache_mass_hosting_enabled
-    verbose "\tAdding to configurations"
-    configurations << this_config
-
+    if not File.exist?("/etc/ssl/ssl.combined") and "#{template}" == "#{mass_ssl_template}"
+      verbose "\tFile '/etc/ssl/ssl.combined' not found! Skipping SSL mass-hosting."
+      next
+    else
+      verbose "\tAdding to configurations"
+      configurations << this_config
+    end
   else
 
     #
