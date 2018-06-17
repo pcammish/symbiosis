@@ -310,7 +310,7 @@ end
   # Check if mass hosting is supposed to be enabled.
   #
   if apache_mass_hosting_enabled
-    if not File.exist?("/etc/ssl/ssl.key") and "#{template}" == "#{mass_ssl_template}"
+    if not File.exist?("#{root}/etc/ssl/ssl.key") and "#{template}" == "#{mass_ssl_template}"
       verbose "\tFile '/etc/ssl/ssl.key' not found! Skipping SSL mass-hosting."
       next
     else
